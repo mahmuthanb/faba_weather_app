@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:faba_weather_app/config/router/routes.dart';
-import 'package:faba_weather_app/presentation/settings/settings_page.dart';
-import 'package:faba_weather_app/presentation/home/home_page.dart';
+import 'package:faba_weather_app/presentation/screens/settings/settings_page.dart';
+import 'package:faba_weather_app/presentation/screens/home/home_page.dart';
 
 final GoRouter appRouter = GoRouter(
   routes: [
