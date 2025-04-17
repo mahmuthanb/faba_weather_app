@@ -1,3 +1,4 @@
+import 'package:faba_weather_app/config/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/presentation/app/app.dart';
 
@@ -13,9 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FABA Weather App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const App(),
     );
   }
