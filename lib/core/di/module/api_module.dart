@@ -5,6 +5,7 @@ import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/core/network/error_interceptor.dart';
 import 'package:faba_weather_app/core/network/logger_interceptor.dart';
+import 'package:faba_weather_app/data/services/api_service.dart';
 
 @module
 abstract class ApiModule {
@@ -43,4 +44,7 @@ abstract class ApiModule {
     }
     return _injectRetrofitAPI!;
   }
+
+  @lazySingleton
+  ApiService get apiService => ApiService(injectRetrofitAPI);
 }
