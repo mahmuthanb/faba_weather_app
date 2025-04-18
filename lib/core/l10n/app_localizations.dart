@@ -101,6 +101,12 @@ abstract class AppLocalizations {
   /// **'Weather App'**
   String get appTitle;
 
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
   /// No description provided for @temperature.
   ///
   /// In en, this message translates to:

@@ -12,6 +12,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Weather App';
 
   @override
+  String get settingsTitle => 'Settings';
+
+  @override
   String get temperature => 'Temperature';
 
   @override

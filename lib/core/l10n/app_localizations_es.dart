@@ -12,6 +12,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appTitle => 'Aplicación del Tiempo';
 
   @override
+  String get settingsTitle => 'Ajustes';
+
+  @override
   String get temperature => 'Temperatura';
 
   @override

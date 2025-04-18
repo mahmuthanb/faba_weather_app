@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "appTitle": "Weather App",
+  "settingsTitle": "Settings",
   "temperature": "Temperature",
   "cityLabel": "City"
 }
