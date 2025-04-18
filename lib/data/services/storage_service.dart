@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class StorageService {
   static const String themeKey = 'theme_mode';
   static const String languageKey = 'app_language';
+  static const String temperatureUnitKey = 'temperature_unit';
 
   static late final SharedPreferences _prefs;
 
@@ -28,5 +29,14 @@ class StorageService {
   // Get Language that's set in the app before
   static String getLanguage() {
     return _prefs.getString(languageKey) ?? 'en';
+  }
+
+  // Temperature Unit
+  static Future<bool> setTemperatureUnit(String unit) async {
+    return await _prefs.setString(temperatureUnitKey, unit);
+  }
+
+  static String getTemperatureUnit() {
+    return _prefs.getString(temperatureUnitKey) ?? 'metric';
   }
 }

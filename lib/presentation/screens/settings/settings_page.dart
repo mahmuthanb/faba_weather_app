@@ -1,6 +1,7 @@
 import 'package:faba_weather_app/core/constants/app_images.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 import 'package:faba_weather_app/presentation/providers/language_provider.dart';
+import 'package:faba_weather_app/presentation/providers/temperature_provider.dart';
 import 'package:faba_weather_app/presentation/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = context.watch<ThemeProvider>();
     final languageProvider = context.watch<LanguageProvider>();
+    final temperatureProvider = context.watch<TemperatureProvider>();
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
@@ -59,12 +61,35 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
                   ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.thermostat),
+                    title: Text('Temperature Unit'),
+                    trailing: DropdownButton<String>(
+                      value: temperatureProvider.temperatureUnit.name,
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'metric',
+                          child: Text('Celsius (°C)'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'imperial',
+                          child: Text('Fahrenheit (°F)'),
+                        ),
+                      ],
+                      onChanged: (String? value) {
+                        if (value != null) {
+                          temperatureProvider.setTemperatureUnit(
+                            UnitType.values.byName(value),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
-
-            const SizedBox(height: 16),
-
+            Spacer(),
             // Additional Settings
             Card(
               child: Column(
