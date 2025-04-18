@@ -1,3 +1,5 @@
+import 'package:faba_weather_app/core/di/locator.dart';
+import 'package:faba_weather_app/presentation/screens/home/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/config/theme.dart';
 import 'package:faba_weather_app/config/router/app_router.dart';
@@ -16,6 +18,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
         ChangeNotifierProvider(create: (context) => LanguageProvider()),
+        ChangeNotifierProvider(create: (context) => getIt<HomeViewModel>()),
       ],
       child: const MyApp(),
     );
