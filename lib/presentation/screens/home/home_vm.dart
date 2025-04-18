@@ -1,21 +1,24 @@
+import 'package:faba_weather_app/data/services/storage_service.dart';
+import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/domain/usecases/get_current_weather_usecase.dart';
-import 'package:flutter/material.dart';
+import 'package:faba_weather_app/presentation/base/base_view_model.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class HomeViewModel extends ChangeNotifier {
+class HomeViewModel extends BaseViewModel {
   final GetCurrentWeatherUseCase _getCurrentWeatherUseCase;
+  Weather? _weather;
+  Weather? get weather => _weather;
 
   HomeViewModel(this._getCurrentWeatherUseCase);
 
-  var weather = "";
-
   Future<void> getCurrentWeather(String cityName) async {
-    final weather = await _getCurrentWeatherUseCase(
-      cityName: cityName,
-      units: "metric",
-    );
-    this.weather = weather.toString();
-    notifyListeners();
+    await handleAsync(() async {
+      _weather = await _getCurrentWeatherUseCase.call(
+        cityName: cityName,
+        units: StorageService.getTemperatureUnit(),
+      );
+      notifyListeners();
+    });
   }
 }
