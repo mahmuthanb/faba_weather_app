@@ -1,5 +1,6 @@
+import 'package:faba_weather_app/domain/entities/weather.dart';
+import 'package:faba_weather_app/domain/repositories/weather_repository.dart';
 import 'package:injectable/injectable.dart';
-import 'package:faba_weather_app/data/repositories/weather_repository.dart';
 import 'package:faba_weather_app/data/services/api_service.dart';
 
 @Injectable(as: WeatherRepository)
@@ -11,7 +12,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
   final ApiService _apiService;
   WeatherRepositoryImpl(this._apiService);
   @override
-  Future<dynamic> getCurrentWeather({
+  Future<Weather> getCurrentWeather({
     required String cityName,
     required String units,
   }) async {
@@ -22,7 +23,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
   }
 
   @override
-  Future<dynamic> getSevenDaysWeather({
+  Future<List<Weather>> getSevenDaysWeather({
     required String latitude,
     required String longitude,
     required String exclude,
