@@ -1,17 +1,6 @@
-import 'package:faba_weather_app/data/services/api_service.dart';
 import 'package:injectable/injectable.dart';
-
-abstract class WeatherRepository {
-  Future<dynamic> getCurrentWeather({
-    required String cityName,
-    required String units,
-  });
-  Future<dynamic> getSevenDaysWeather({
-    required String latitude,
-    required String longitude,
-    required String exclude,
-  });
-}
+import 'package:faba_weather_app/data/repositories/weather_repository.dart';
+import 'package:faba_weather_app/data/services/api_service.dart';
 
 @Injectable(as: WeatherRepository)
 @prod
