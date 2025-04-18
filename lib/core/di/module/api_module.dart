@@ -16,6 +16,14 @@ abstract class ApiModule {
   @Singleton(order: -96)
   Dio get injectRetrofitAPI {
     if (_injectRetrofitAPI == null) {
+      final apiKey = getIt<AppConfig>().apiKey;
+
+      if (apiKey.isEmpty) {
+        throw Exception(
+          "API_KEY not found. Please run the app with --dart-define=API_KEY=your_api_key",
+        );
+      }
+
       Dio dio = Dio(
         BaseOptions(
           baseUrl: getIt<AppConfig>().baseUrl,
@@ -24,18 +32,12 @@ abstract class ApiModule {
             "Accept": "application/json",
             "accept": "*/*",
           },
-          // User Dart Define method to put your API_KEY into env
-          queryParameters: {
-            'appid': String.fromEnvironment(
-              "API_KEY",
-              defaultValue: "YOUR_API_KEY",
-            ),
-          },
           connectTimeout: const Duration(minutes: 1),
           receiveTimeout: const Duration(minutes: 1),
           sendTimeout: const Duration(minutes: 1),
         ),
       );
+      dio.options.queryParameters.addAll({'appid': apiKey});
       dio.interceptors.add(ErrorInterceptor());
       if (kDebugMode) {
         dio.interceptors.add(LoggerInterceptor());
