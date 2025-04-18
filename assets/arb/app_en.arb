@@ -2,6 +2,7 @@
   "@@locale": "en",
   "appTitle": "Weather App",
   "settingsTitle": "Settings",
+  "settingsHeader":"FABA International\nCase Study",
   "temperature": "Temperature",
   "cityLabel": "City"
 }

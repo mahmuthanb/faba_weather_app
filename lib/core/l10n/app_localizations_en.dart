@@ -15,6 +15,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTitle => 'Settings';
 
   @override
+  String get settingsHeader => 'FABA International\nCase Study';
+
+  @override
   String get temperature => 'Temperature';
 
   @override

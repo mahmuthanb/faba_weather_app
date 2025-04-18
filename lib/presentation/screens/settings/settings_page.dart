@@ -24,7 +24,7 @@ class SettingsPage extends StatelessWidget {
             CircleAvatar(radius: 50, child: Image.asset(AppImages.logo)),
             const SizedBox(height: 16),
             Text(
-              'FABA International Case Study',
+              l10n.settingsHeader,
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),

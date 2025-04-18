@@ -107,6 +107,12 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settingsTitle;
 
+  /// No description provided for @settingsHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'FABA International\nCase Study'**
+  String get settingsHeader;
+
   /// No description provided for @temperature.
   ///
   /// In en, this message translates to:
