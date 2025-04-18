@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:dio/dio.dart';
+import 'package:faba_weather_app/data/models/weather_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
@@ -10,12 +11,12 @@ abstract class ApiService {
   //TODO ADD LANG IDENTIFIER IF HAVE TIME
 
   @GET("/weather")
-  Future<dynamic> getCurrentWeather({
+  Future<WeatherModel> getCurrentWeather({
     @Query('q') required String cityName,
     @Query('units') String? units,
   });
   @GET("/onecall")
-  Future<dynamic> getSevenDaysForecast({
+  Future<List<WeatherModel>> getSevenDaysForecast({
     @Query('lat') required String latitude,
     @Query('lon') required String longitude,
     @Query('exclude') String? exclude,

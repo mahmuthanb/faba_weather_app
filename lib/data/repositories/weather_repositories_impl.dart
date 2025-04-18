@@ -11,14 +11,23 @@ import 'package:faba_weather_app/data/services/api_service.dart';
 class WeatherRepositoryImpl extends WeatherRepository {
   final ApiService _apiService;
   WeatherRepositoryImpl(this._apiService);
+
   @override
   Future<Weather> getCurrentWeather({
     required String cityName,
     required String units,
   }) async {
-    return await _apiService.getCurrentWeather(
+    final response = await _apiService.getCurrentWeather(
       cityName: cityName,
       units: units,
+    );
+    return Weather(
+      temperature: response.temperature,
+      description: response.description,
+      icon: response.icon,
+      humidity: response.humidity,
+      windSpeed: response.windSpeed,
+      cityName: response.cityName,
     );
   }
 
@@ -28,10 +37,22 @@ class WeatherRepositoryImpl extends WeatherRepository {
     required String longitude,
     required String exclude,
   }) async {
-    return await _apiService.getSevenDaysForecast(
+    final response = await _apiService.getSevenDaysForecast(
       latitude: latitude,
       longitude: longitude,
       exclude: exclude,
     );
+    return response
+        .map(
+          (model) => Weather(
+            temperature: model.temperature,
+            description: model.description,
+            icon: model.icon,
+            humidity: model.humidity,
+            windSpeed: model.windSpeed,
+            cityName: model.cityName,
+          ),
+        )
+        .toList();
   }
 }

@@ -1,10 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:faba_weather_app/domain/entities/weather.dart';
 
 part 'weather_model.freezed.dart';
 part 'weather_model.g.dart';
 
 @Freezed(toJson: true, fromJson: true)
-class WeatherModel with _$WeatherModel {
+class WeatherModel extends Weather with _$WeatherModel {
   const factory WeatherModel({
     required double temperature,
     required String description,
