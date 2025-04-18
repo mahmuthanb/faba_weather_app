@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/core/logger/logger.dart';
-import 'package:faba_weather_app/data/services/storage_services.dart';
+import 'package:faba_weather_app/data/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

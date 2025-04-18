@@ -1,4 +1,4 @@
-import 'package:faba_weather_app/data/services/storage_services.dart';
+import 'package:faba_weather_app/data/services/storage_service.dart';
 import 'package:flutter/material.dart';
 
 class LanguageProvider with ChangeNotifier {

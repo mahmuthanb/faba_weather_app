@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:faba_weather_app/data/services/storage_services.dart';
+import 'package:faba_weather_app/data/services/storage_service.dart';
 import 'package:provider/provider.dart';
 
 class ThemeProvider with ChangeNotifier {
