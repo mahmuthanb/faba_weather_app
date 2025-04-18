@@ -1,3 +1,4 @@
+import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/config/theme.dart';
 import 'package:faba_weather_app/config/router/app_router.dart';
@@ -11,6 +12,7 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageService.init();
+  await setupDI("dev");
   runApp(
     MultiProvider(
       providers: [
