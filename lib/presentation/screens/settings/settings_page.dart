@@ -1,3 +1,4 @@
+import 'package:faba_weather_app/core/constants/app_images.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 import 'package:faba_weather_app/presentation/providers/language_provider.dart';
 import 'package:faba_weather_app/presentation/providers/theme_provider.dart';
@@ -19,6 +20,9 @@ class SettingsPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
+            // FABA Logo
+            CircleAvatar(radius: 50, child: Image.asset(AppImages.logo)),
+            const SizedBox(height: 16),
             Text(
               'FABA International Case Study',
               textAlign: TextAlign.center,
