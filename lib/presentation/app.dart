@@ -7,6 +7,7 @@ import 'package:faba_weather_app/config/router/app_router.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 import 'package:faba_weather_app/presentation/providers/language_provider.dart';
 import 'package:faba_weather_app/presentation/providers/theme_provider.dart';
+import 'package:faba_weather_app/presentation/providers/location_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => LanguageProvider()),
         ChangeNotifierProvider(create: (context) => TemperatureProvider()),
         ChangeNotifierProvider(create: (context) => getIt<HomeViewModel>()),
+        ChangeNotifierProvider(create: (context) => getIt<LocationProvider>()),
       ],
       child: const MyApp(),
     );
