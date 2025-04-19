@@ -12,7 +12,8 @@ class WeatherForecastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final time = DateTime.fromMillisecondsSinceEpoch(weather.timestamp * 1000);
-    final formattedTime = DateFormat('HH:mm').format(time);
+    final dayOfWeek = DateFormat('EEE').format(time);
+    final date = DateFormat('d MMM').format(time);
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -33,11 +34,18 @@ class WeatherForecastCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            formattedTime,
+            dayOfWeek,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            date,
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.7),
+              fontSize: 14,
             ),
           ),
           const SizedBox(height: 8),

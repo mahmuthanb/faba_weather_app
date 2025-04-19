@@ -20,6 +20,12 @@ class HomeViewModel extends BaseViewModel {
   List<Weather>? _threeHoursWeather;
   List<Weather>? get threeHoursWeather => _threeHoursWeather;
 
+  List<Weather>? _fiveDayForecast;
+  List<Weather>? get fiveDayForecast => _fiveDayForecast;
+
+  List<Weather>? _todayForecast;
+  List<Weather>? get todayForecast => _todayForecast;
+
   CityInfo? _cityInfo;
   CityInfo? get cityInfo => _cityInfo;
 
@@ -52,7 +58,67 @@ class HomeViewModel extends BaseViewModel {
 
     _threeHoursWeather = response.list;
     _cityInfo = response.city;
+    _processFiveDayForecast();
+    _processTodayForecast();
     notifyListeners();
+  }
+
+  void _processFiveDayForecast() {
+    if (_threeHoursWeather == null) return;
+
+    final now = DateTime.now();
+    final fiveDayForecast = <Weather>[];
+    final processedDates = <String>{};
+
+    for (var weather in _threeHoursWeather!) {
+      final dateTime = DateTime.fromMillisecondsSinceEpoch(
+        weather.timestamp * 1000,
+      );
+      final dateKey = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
+
+      // Skip if we've already processed this date or if it's today
+      if (processedDates.contains(dateKey) ||
+          (dateTime.year == now.year &&
+              dateTime.month == now.month &&
+              dateTime.day == now.day)) {
+        continue;
+      }
+
+      // Only include forecasts at 12:00 PM (noon)
+      if (dateTime.hour == 12) {
+        fiveDayForecast.add(weather);
+        processedDates.add(dateKey);
+      }
+
+      // Stop after getting 5 days
+      if (fiveDayForecast.length >= 5) {
+        break;
+      }
+    }
+
+    _fiveDayForecast = fiveDayForecast;
+  }
+
+  void _processTodayForecast() {
+    if (_threeHoursWeather == null) return;
+
+    final now = DateTime.now();
+    final todayForecast = <Weather>[];
+
+    for (var weather in _threeHoursWeather!) {
+      final dateTime = DateTime.fromMillisecondsSinceEpoch(
+        weather.timestamp * 1000,
+      );
+
+      // Only include today's forecasts
+      if (dateTime.year == now.year &&
+          dateTime.month == now.month &&
+          dateTime.day == now.day) {
+        todayForecast.add(weather);
+      }
+    }
+
+    _todayForecast = todayForecast;
   }
 
   Future<void> getCurrentLocation() async {
