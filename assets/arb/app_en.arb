@@ -4,5 +4,6 @@
   "settingsTitle": "Settings",
   "settingsHeader":"FABA International\nCase Study",
   "temperature": "Temperature",
-  "cityLabel": "City"
+  "cityLabel": "City",
+  "searchHint":"Search City"
 }

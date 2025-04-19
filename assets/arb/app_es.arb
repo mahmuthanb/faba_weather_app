@@ -4,5 +4,6 @@
   "settingsTitle":"Ajustes",
   "settingsHeader":"FABA International\nEstudio de caso",
   "temperature": "Temperatura",
-  "cityLabel": "Ciudad"
+  "cityLabel": "Ciudad",
+  "searchHint": "Buscar ciudad"
 }

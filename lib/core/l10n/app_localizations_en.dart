@@ -22,4 +22,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cityLabel => 'City';
+
+  @override
+  String get searchHint => 'Search City';
 }
