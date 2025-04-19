@@ -23,6 +23,7 @@ dependencies:
   json_annotation: ^4.9.0
   dio: ^5.8.0+1
   geolocator: ^11.0.0
+  lottie: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -39,3 +40,4 @@ flutter:
   generate: true
   assets:
     - assets/images/
+    - assets/animations/
