@@ -4,11 +4,10 @@ import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:faba_weather_app/core/utils/time_utils.dart';
 import 'package:faba_weather_app/core/widgets/widgets.dart';
 import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
-import 'package:faba_weather_app/presentation/widgets/todays_forecasts_list.dart';
+import 'package:faba_weather_app/presentation/widgets/todays_forecasts_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/presentation/screens/home/home_vm.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_animation_container.dart';
-import 'package:faba_weather_app/presentation/widgets/weather_forecast_card.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_forecast_list.dart';
 import 'package:go_router/go_router.dart';
 
@@ -196,10 +195,7 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-              fontSize: 12,
-            ),
+            style: TextStyle(color: Colors.white.withAlpha(175), fontSize: 12),
           ),
           const SizedBox(height: 2),
           Text(

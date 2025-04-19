@@ -1,4 +1,3 @@
-import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/domain/repositories/weather_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:faba_weather_app/data/models/forecast_response_model.dart';

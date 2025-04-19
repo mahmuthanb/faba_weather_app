@@ -57,7 +57,7 @@ class WeatherForecastList extends StatelessWidget {
                         Text(
                           date,
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.7),
+                            color: Colors.white.withAlpha(175),
                             fontSize: 14,
                           ),
                         ),
@@ -68,9 +68,9 @@ class WeatherForecastList extends StatelessWidget {
                   // Weather Condition
                   Expanded(
                     child: Text(
-                      weather.description,
+                      weather.weatherCondition,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withAlpha(225),
                         fontSize: 14,
                       ),
                     ),

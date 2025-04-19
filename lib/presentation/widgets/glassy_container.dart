@@ -26,12 +26,12 @@ class GlassyContainer extends StatelessWidget {
       padding: padding ?? CustomSpacer.space12.all,
       margin: margin ?? CustomSpacer.space8.all,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withAlpha(20),
         borderRadius: borderRadius ?? BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+        border: Border.all(color: Colors.white.withAlpha(50), width: 2),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withAlpha(25),
             blurRadius: 10,
             spreadRadius: 0,
           ),
