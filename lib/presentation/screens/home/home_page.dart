@@ -2,6 +2,7 @@ import 'package:faba_weather_app/config/router/routes.dart';
 import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:faba_weather_app/core/utils/time_utils.dart';
 import 'package:faba_weather_app/core/widgets/widgets.dart';
+import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/presentation/screens/home/home_vm.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_animation_container.dart';
@@ -109,17 +110,7 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
             const SizedBox(height: 32),
             // City Information Card
             if (viewModel.cityInfo != null) ...[
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
-                    width: 1,
-                  ),
-                ),
+              GlassyContainer(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -180,29 +171,33 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
             ],
             // Today's 3-Hour Forecast
             if (viewModel.todayForecast != null) ...[
-              const Padding(
-                padding: EdgeInsets.only(left: 16, bottom: 8),
-                child: Text(
-                  "Today's Forecast",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 150,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  itemCount: viewModel.todayForecast!.length,
-                  itemBuilder: (context, index) {
-                    return WeatherForecastCard(
-                      weather: viewModel.todayForecast![index],
-                      cityInfo: viewModel.cityInfo,
-                    );
-                  },
+              GlassyContainer(
+                padding: CustomSpacer.space16.vertical,
+                child: Column(
+                  children: [
+                    Text(
+                      "Today's Forecast",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 150,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        itemCount: viewModel.todayForecast!.length,
+                        itemBuilder: (context, index) {
+                          return WeatherForecastCard(
+                            weather: viewModel.todayForecast![index],
+                            cityInfo: viewModel.cityInfo,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 32),
