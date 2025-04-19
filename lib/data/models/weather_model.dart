@@ -22,6 +22,7 @@ class WeatherModel extends Weather with _$WeatherModel {
     required String country,
     required int sunrise,
     required int sunset,
+    required String weatherCondition,
   }) = _WeatherModel;
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
@@ -42,6 +43,7 @@ class WeatherModel extends Weather with _$WeatherModel {
       country: json['sys']['country'] as String,
       sunrise: json['sys']['sunrise'] as int,
       sunset: json['sys']['sunset'] as int,
+      weatherCondition: json['weather'][0]['main'] as String,
     );
   }
 }

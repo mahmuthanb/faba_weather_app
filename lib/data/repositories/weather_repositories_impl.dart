@@ -28,6 +28,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
       humidity: response.humidity,
       windSpeed: response.windSpeed,
       cityName: response.cityName,
+      weatherCondition: response.weatherCondition,
     );
   }
 
@@ -51,6 +52,11 @@ class WeatherRepositoryImpl extends WeatherRepository {
             humidity: model.humidity,
             windSpeed: model.windSpeed,
             cityName: model.cityName,
+            weatherCondition: model.weatherCondition,
+          ),
+        )
+        .toList();
+  }
           ),
         )
         .toList();
