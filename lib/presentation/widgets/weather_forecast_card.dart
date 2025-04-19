@@ -1,7 +1,11 @@
+import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:intl/intl.dart';
 import 'package:faba_weather_app/data/models/forecast_response_model.dart';
+import 'package:faba_weather_app/config/app_config.dart';
+import 'package:faba_weather_app/core/di/locator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class WeatherForecastCard extends StatelessWidget {
   final Weather weather;
@@ -12,41 +16,30 @@ class WeatherForecastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final time = DateTime.fromMillisecondsSinceEpoch(weather.timestamp * 1000);
-    final dayOfWeek = DateFormat('EEE').format(time);
-    final date = DateFormat('d MMM').format(time);
+    final timeStr = DateFormat('HH:mm').format(time);
+    final iconUrl = '${getIt<AppConfig>().iconBaseUrl}${weather.icon}@4x.png';
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return Padding(
+      padding: CustomSpacer.space8.all,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            dayOfWeek,
+            timeStr,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
           ),
-          Text(
-            date,
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-              fontSize: 14,
-            ),
+          const SizedBox(height: 8),
+          CachedNetworkImage(
+            imageUrl: iconUrl,
+            width: 40,
+            height: 40,
+            fit: BoxFit.contain,
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
           const SizedBox(height: 8),
           Text(
@@ -58,12 +51,19 @@ class WeatherForecastCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Text(
-            weather.weatherCondition,
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
-              fontSize: 14,
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.air, color: Colors.white, size: 16),
+              const SizedBox(width: 4),
+              Text(
+                '${weather.windSpeed.round()} km/h',
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.7),
+                  fontSize: 14,
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -1,7 +1,10 @@
+import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:intl/intl.dart';
-import 'package:faba_weather_app/core/enums/weather_condition.dart';
+import 'package:faba_weather_app/config/app_config.dart';
+import 'package:faba_weather_app/core/di/locator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class WeatherForecastList extends StatelessWidget {
   final List<Weather> forecasts;
@@ -10,21 +13,7 @@ class WeatherForecastList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return GlassyContainer(
       child: Column(
         children: [
           const Padding(
@@ -44,9 +33,8 @@ class WeatherForecastList extends StatelessWidget {
             );
             final dayOfWeek = DateFormat('EEE').format(time);
             final date = DateFormat('d MMM').format(time);
-            final condition = WeatherCondition.fromString(
-              weather.weatherCondition,
-            );
+            final iconUrl =
+                '${getIt<AppConfig>().iconBaseUrl}${weather.icon}@4x.png';
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
@@ -88,21 +76,19 @@ class WeatherForecastList extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  // Day Weather Icon
-                  Icon(
-                    _getWeatherIcon(condition, isDay: true),
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                  const SizedBox(width: 8),
-                  // Night Weather Icon
-                  Icon(
-                    _getWeatherIcon(condition, isDay: false),
-                    color: Colors.white.withOpacity(0.7),
-                    size: 24,
+                  // Weather Icon
+                  CachedNetworkImage(
+                    imageUrl: iconUrl,
+                    width: 40,
+                    height: 40,
+                    fit: BoxFit.contain,
+                    placeholder:
+                        (context, url) => const CircularProgressIndicator(),
+                    errorWidget:
+                        (context, url, error) => const Icon(Icons.error),
                   ),
                   const SizedBox(width: 16),
-                  // Temperature Range
+                  // Temperature
                   Text(
                     '${weather.temperature.round()}°',
                     style: const TextStyle(
@@ -118,24 +104,5 @@ class WeatherForecastList extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  IconData _getWeatherIcon(WeatherCondition condition, {required bool isDay}) {
-    switch (condition) {
-      case WeatherCondition.clear:
-        return isDay ? Icons.wb_sunny : Icons.nightlight_round;
-      case WeatherCondition.cloudy:
-        return isDay ? Icons.cloud : Icons.cloud_queue;
-      case WeatherCondition.rain:
-        return isDay ? Icons.water_drop : Icons.water_drop_outlined;
-      case WeatherCondition.thunderstorm:
-        return isDay ? Icons.thunderstorm : Icons.thunderstorm_outlined;
-      case WeatherCondition.snow:
-        return isDay ? Icons.ac_unit : Icons.ac_unit_outlined;
-      case WeatherCondition.fog:
-        return isDay ? Icons.cloud : Icons.cloud_queue;
-      case WeatherCondition.partlyCloudy:
-        return isDay ? Icons.cloud : Icons.cloud_queue;
-    }
   }
 }
