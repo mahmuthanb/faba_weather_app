@@ -2,6 +2,7 @@ import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/domain/repositories/weather_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:faba_weather_app/data/services/api_service.dart';
+import 'package:faba_weather_app/data/models/forecast_response_model.dart';
 
 @Injectable(as: WeatherRepository)
 @prod
@@ -17,18 +18,9 @@ class WeatherRepositoryImpl extends WeatherRepository {
     required String cityName,
     required String units,
   }) async {
-    final response = await _apiService.getCurrentWeather(
+    return await _apiService.getCurrentWeather(
       cityName: cityName,
       units: units,
-    );
-    return Weather(
-      temperature: response.temperature,
-      description: response.description,
-      icon: response.icon,
-      humidity: response.humidity,
-      windSpeed: response.windSpeed,
-      cityName: response.cityName,
-      weatherCondition: response.weatherCondition,
     );
   }
 
@@ -38,27 +30,23 @@ class WeatherRepositoryImpl extends WeatherRepository {
     required String longitude,
     required String exclude,
   }) async {
-    final response = await _apiService.getSevenDaysForecast(
+    return await _apiService.getSevenDaysForecast(
       latitude: latitude,
       longitude: longitude,
       exclude: exclude,
     );
-    return response
-        .map(
-          (model) => Weather(
-            temperature: model.temperature,
-            description: model.description,
-            icon: model.icon,
-            humidity: model.humidity,
-            windSpeed: model.windSpeed,
-            cityName: model.cityName,
-            weatherCondition: model.weatherCondition,
-          ),
-        )
-        .toList();
   }
-          ),
-        )
-        .toList();
+
+  @override
+  Future<ForecastResponseModel> getThreeHoursWeather({
+    required String latitude,
+    required String longitude,
+    required String units,
+  }) async {
+    return await _apiService.getThreeHoursForecast(
+      latitude: latitude,
+      longitude: longitude,
+      units: units,
+    );
   }
 }

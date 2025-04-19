@@ -1,19 +1,20 @@
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/domain/repositories/weather_repository.dart';
 import 'package:injectable/injectable.dart';
+import 'package:faba_weather_app/data/models/forecast_response_model.dart';
 
 @injectable
 class GetThreeHoursWeatherUseCase {
-  final WeatherRepository _weatherRepository;
+  final WeatherRepository _repository;
 
-  GetThreeHoursWeatherUseCase(this._weatherRepository);
+  GetThreeHoursWeatherUseCase(this._repository);
 
-  Future<List<Weather>> call({
+  Future<ForecastResponseModel> call({
     required String latitude,
     required String longitude,
     required String units,
   }) async {
-    return await _weatherRepository.getThreeHoursWeather(
+    return await _repository.getThreeHoursWeather(
       latitude: latitude,
       longitude: longitude,
       units: units,

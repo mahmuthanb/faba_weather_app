@@ -1,4 +1,5 @@
 import 'package:faba_weather_app/domain/entities/weather.dart';
+import 'package:faba_weather_app/data/models/forecast_response_model.dart';
 
 abstract class WeatherRepository {
   Future<Weather> getCurrentWeather({
@@ -12,7 +13,7 @@ abstract class WeatherRepository {
     required String exclude,
   });
 
-  Future<List<Weather>> getThreeHoursWeather({
+  Future<ForecastResponseModel> getThreeHoursWeather({
     required String latitude,
     required String longitude,
     required String units,
