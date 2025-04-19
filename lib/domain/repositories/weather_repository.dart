@@ -11,4 +11,10 @@ abstract class WeatherRepository {
     required String longitude,
     required String exclude,
   });
+
+  Future<List<Weather>> getThreeHoursWeather({
+    required String latitude,
+    required String longitude,
+    required String units,
+  });
 }

@@ -21,4 +21,10 @@ abstract class ApiService {
     @Query('lon') required String longitude,
     @Query('exclude') String? exclude,
   });
+  @GET("/forecast")
+  Future<List<WeatherModel>> getThreeHoursForecast({
+    @Query('lat') required String latitude,
+    @Query('lon') required String longitude,
+    @Query('units') String? units,
+  });
 }
