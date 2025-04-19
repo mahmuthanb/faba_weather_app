@@ -31,7 +31,8 @@ class WeatherModel extends Weather with _$WeatherModel {
       icon: json['weather'][0]['icon'] as String,
       humidity: json['main']['humidity'] as int,
       windSpeed: (json['wind']['speed'] as num).toDouble(),
-      cityName: json['name'] as String,
+      cityName:
+          "${(json['name'] as String).replaceAll(" Province", "")}, ${json['sys']['country']}",
       latitude: (json['coord']['lat'] as num).toDouble(),
       longitude: (json['coord']['lon'] as num).toDouble(),
       feelsLike: (json['main']['feels_like'] as num).toDouble(),
