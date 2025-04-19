@@ -50,6 +50,7 @@ class HomeViewModel extends BaseViewModel {
       units: StorageService.getTemperatureUnit(),
     );
 
+    _threeHoursWeather = response.list;
     _cityInfo = response.city;
     notifyListeners();
   }
