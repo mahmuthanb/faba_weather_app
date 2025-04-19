@@ -2,16 +2,14 @@ import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:intl/intl.dart';
-import 'package:faba_weather_app/data/models/forecast_response_model.dart';
 import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class WeatherForecastCard extends StatelessWidget {
   final Weather weather;
-  final CityInfo? cityInfo;
 
-  const WeatherForecastCard({super.key, required this.weather, this.cityInfo});
+  const WeatherForecastCard({super.key, required this.weather});
 
   @override
   Widget build(BuildContext context) {
