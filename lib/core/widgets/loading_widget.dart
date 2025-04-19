@@ -1,0 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    return Container(
+      color: Colors.black54,
+      child: Center(
+        child: Lottie.asset(
+          'assets/animations/scattered_clouds.json',
+          width: size.width * 0.75,
+          height: size.height * 0.75,
+        ),
+      ),
+    );
+  }
+}
