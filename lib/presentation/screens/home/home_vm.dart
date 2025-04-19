@@ -1,3 +1,5 @@
+import 'package:faba_weather_app/config/app_config.dart';
+import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/core/services/location_service.dart';
 import 'package:faba_weather_app/data/services/storage_service.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
@@ -32,6 +34,9 @@ class HomeViewModel extends BaseViewModel {
   Position? _location;
   Position? get location => _location;
 
+  String? _iconUrl;
+  String? get iconUrl => _iconUrl;
+
   HomeViewModel(
     this._getCurrentWeatherUseCase,
     this._getThreeHoursWeatherUseCase,
@@ -45,6 +50,7 @@ class HomeViewModel extends BaseViewModel {
       cityName: cityName,
       units: StorageService.getTemperatureUnit(),
     );
+    _iconUrl = "${getIt<AppConfig>().iconBaseUrl}${_weather!.icon}@4x.png";
     notifyListeners();
   }
 
