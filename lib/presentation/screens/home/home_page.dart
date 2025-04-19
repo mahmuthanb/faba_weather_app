@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:faba_weather_app/config/router/routes.dart';
 import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:faba_weather_app/core/utils/time_utils.dart';
 import 'package:faba_weather_app/core/widgets/widgets.dart';
 import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
+import 'package:faba_weather_app/presentation/widgets/todays_forecasts_list.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/presentation/screens/home/home_vm.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_animation_container.dart';
@@ -36,14 +38,14 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
                       const Icon(
                         Icons.location_on,
                         color: Colors.white,
-                        size: 20,
+                        size: 30,
                       ),
                       const SizedBox(width: 4),
                       Text(
                         viewModel.weather?.cityAndCountry ?? "",
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 24,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -79,35 +81,37 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
             if (viewModel.weather != null) ...[
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     '${viewModel.weather!.temperature.round()}',
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 48,
+                      fontSize: 96,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const Text(
-                    '°C',
+                    '°c',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 48,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  Spacer(),
+
+                  if (viewModel.iconUrl != null)
+                    CachedNetworkImage(
+                      imageUrl: viewModel.iconUrl!,
+                      width: 96,
+                      height: 96,
+                      fit: BoxFit.cover,
+                    ),
                 ],
               ),
-              Text(
-                viewModel.weather!.weatherCondition,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
             ],
-            const SizedBox(height: 32),
+            // const SizedBox(height: 32),
             // City Information Card
             if (viewModel.cityInfo != null) ...[
               GlassyContainer(
@@ -115,6 +119,7 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(
                           Icons.location_city,
@@ -167,40 +172,10 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
                   ],
                 ),
               ),
-              const SizedBox(height: 32),
             ],
             // Today's 3-Hour Forecast
             if (viewModel.todayForecast != null) ...[
-              GlassyContainer(
-                padding: CustomSpacer.space16.vertical,
-                child: Column(
-                  children: [
-                    Text(
-                      "Today's Forecast",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        itemCount: viewModel.todayForecast!.length,
-                        itemBuilder: (context, index) {
-                          return WeatherForecastCard(
-                            weather: viewModel.todayForecast![index],
-                            cityInfo: viewModel.cityInfo,
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 32),
+              TodaysForecastCarousel(forecasts: viewModel.todayForecast!),
             ],
             // Five Day Forecast
             if (viewModel.fiveDayForecast != null) ...[
