@@ -57,6 +57,7 @@ class HomeViewModel extends BaseViewModel {
       longitude: _location!.longitude.toString(),
       units: StorageService.getTemperatureUnit(),
     );
+    notifyListeners();
   }
 
   Future<void> getThreeHoursWeatherByLocation() async {
@@ -140,10 +141,9 @@ class HomeViewModel extends BaseViewModel {
   Future<void> initializeLocation() async {
     try {
       setLoading(true);
-      getCurrentLocation().then((value) async {
-        await getCurrentWeatherByLocation();
-        await getThreeHoursWeatherByLocation();
-      });
+      await getCurrentLocation();
+      await getCurrentWeatherByLocation();
+      await getThreeHoursWeatherByLocation();
     } catch (e) {
       setError(e.toString());
     } finally {
