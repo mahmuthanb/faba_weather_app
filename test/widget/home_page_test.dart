@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
@@ -11,10 +10,11 @@ import 'package:faba_weather_app/presentation/widgets/city_info_card.dart';
 import 'package:faba_weather_app/presentation/widgets/main_temperature_display_container.dart';
 import 'package:faba_weather_app/presentation/widgets/todays_forecasts_carousel.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_forecast_list.dart';
-import '../../../mocks/mock_theme_provider.dart';
-import '../../../di/test_config.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import '../di/test_config.dart';
+import '../mocks/mock_theme_provider.dart';
 
 void main() {
   late HomeViewModel viewModel;
