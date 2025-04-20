@@ -1,6 +1,7 @@
 import 'package:faba_weather_app/core/services/location_service.dart';
 import 'package:faba_weather_app/data/services/storage_service.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
+import 'package:faba_weather_app/domain/usecases/get_current_weather_by_location.dart';
 import 'package:faba_weather_app/domain/usecases/get_current_weather_usecase.dart';
 import 'package:faba_weather_app/domain/usecases/get_three_hours_weather_usecase.dart';
 import 'package:faba_weather_app/presentation/base/base_view_model.dart';
@@ -11,6 +12,7 @@ import 'package:faba_weather_app/data/models/forecast_response_model.dart';
 @injectable
 class HomeViewModel extends BaseViewModel {
   final GetCurrentWeatherUseCase _getCurrentWeatherUseCase;
+  final GetCurrentWeatherByLocationUseCase _getCurrentWeatherByLocationUseCase;
   final GetThreeHoursWeatherUseCase _getThreeHoursWeatherUseCase;
   final LocationService _locationService;
 
@@ -34,6 +36,7 @@ class HomeViewModel extends BaseViewModel {
 
   HomeViewModel(
     this._getCurrentWeatherUseCase,
+    this._getCurrentWeatherByLocationUseCase,
     this._getThreeHoursWeatherUseCase,
     this._locationService,
   ) {
@@ -49,6 +52,14 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<void> getCurrentWeatherByLocation() async {
+    _weather = await _getCurrentWeatherByLocationUseCase.call(
+      latitude: _location!.latitude.toString(),
+      longitude: _location!.longitude.toString(),
+      units: StorageService.getTemperatureUnit(),
+    );
+  }
+
+  Future<void> getThreeHoursWeatherByLocation() async {
     if (_location == null) return;
     final response = await _getThreeHoursWeatherUseCase.call(
       latitude: _location!.latitude.toString(),
@@ -130,8 +141,8 @@ class HomeViewModel extends BaseViewModel {
     try {
       setLoading(true);
       getCurrentLocation().then((value) async {
-        await getCurrentWeather("Konya");
         await getCurrentWeatherByLocation();
+        await getThreeHoursWeatherByLocation();
       });
     } catch (e) {
       setError(e.toString());

@@ -17,6 +17,13 @@ abstract class ApiService {
     @Query('units') String? units,
   });
 
+  @GET("/weather")
+  Future<CurrentWeatherModel> getCurrentWeatherByLocation({
+    @Query('lat') required String latitude,
+    @Query('lon') required String longitude,
+    @Query('units') String? units,
+  });
+
   /// CAN NOT BE USED BECAUSE OF API IS NO LONGER FREE
   @GET("/onecall")
   Future<List<Weather>> getSevenDaysForecast({

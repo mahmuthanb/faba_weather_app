@@ -7,7 +7,6 @@ import 'package:faba_weather_app/data/models/forecast_response_model.dart';
 @Injectable(as: WeatherRepository)
 @prod
 @dev
-@test
 @Singleton(order: -98)
 class WeatherRepositoryImpl extends WeatherRepository {
   final ApiService _apiService;
@@ -20,6 +19,19 @@ class WeatherRepositoryImpl extends WeatherRepository {
   }) async {
     return await _apiService.getCurrentWeather(
       cityName: cityName,
+      units: units,
+    );
+  }
+
+  @override
+  Future<Weather> getCurrentWeatherByLocation({
+    required String latitude,
+    required String longitude,
+    required String units,
+  }) async {
+    return await _apiService.getCurrentWeatherByLocation(
+      latitude: latitude,
+      longitude: longitude,
       units: units,
     );
   }

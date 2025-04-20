@@ -7,6 +7,12 @@ abstract class WeatherRepository {
     required String units,
   });
 
+  Future<Weather> getCurrentWeatherByLocation({
+    required String latitude,
+    required String longitude,
+    required String units,
+  });
+
   Future<List<Weather>> getSevenDaysWeather({
     required String latitude,
     required String longitude,
