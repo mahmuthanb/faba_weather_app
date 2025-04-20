@@ -4,6 +4,8 @@ class StorageService {
   static const String themeKey = 'theme_mode';
   static const String languageKey = 'app_language';
   static const String temperatureUnitKey = 'temperature_unit';
+  static const String recentSearchesKey = 'recent_searches';
+  static const int maxRecentSearches = 5;
 
   static late final SharedPreferences _prefs;
 
@@ -38,5 +40,33 @@ class StorageService {
 
   static String getTemperatureUnit() {
     return _prefs.getString(temperatureUnitKey) ?? 'metric';
+  }
+
+  // Recent Searches
+  static Future<List<String>> getRecentSearches() async {
+    return _prefs.getStringList(recentSearchesKey) ?? [];
+  }
+
+  static Future<void> addRecentSearch(String search) async {
+    if (search.isEmpty) return;
+
+    final searches = await getRecentSearches();
+
+    // Remove if already exists to avoid duplicates
+    searches.remove(search);
+
+    // Add to the beginning of the list
+    searches.insert(0, search);
+
+    // Keep only the most recent searches
+    if (searches.length > maxRecentSearches) {
+      searches.removeLast();
+    }
+
+    await _prefs.setStringList(recentSearchesKey, searches);
+  }
+
+  static Future<void> clearRecentSearches() async {
+    await _prefs.remove(recentSearchesKey);
   }
 }

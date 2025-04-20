@@ -3,6 +3,7 @@ import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:faba_weather_app/core/utils/time_utils.dart';
 import 'package:faba_weather_app/core/widgets/widgets.dart';
 import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
+import 'package:faba_weather_app/presentation/widgets/location_search_bottom_sheet.dart';
 import 'package:faba_weather_app/presentation/widgets/main_temperature_display_container.dart';
 import 'package:faba_weather_app/presentation/widgets/todays_forecasts_carousel.dart';
 import 'package:flutter/material.dart';
@@ -40,12 +41,12 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
               ),
               const Spacer(),
               IconButton(
-                onPressed: viewModel.initializeLocation,
-                icon: const Icon(Icons.refresh, color: Colors.white, size: 24),
+                onPressed:
+                    () => LocationSearchBottomSheet.show(context, viewModel),
+                icon: const Icon(Icons.search, color: Colors.white, size: 24),
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
               ),
-              const SizedBox(width: 16),
               IconButton(
                 onPressed: () => context.push(AppRoutes.settings),
                 icon: const Icon(Icons.settings, color: Colors.white, size: 24),
