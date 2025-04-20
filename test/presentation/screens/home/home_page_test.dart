@@ -68,4 +68,28 @@ void main() {
     expect(find.textContaining('Loading', findRichText: true), findsOneWidget);
   });
 
+  testWidgets('HomePage displays weather information correctly', (
+    tester,
+  ) async {
+    // Initialize view model before building widget
+    viewModel = HomeViewModel(
+      GetCurrentWeatherUseCase(testWeatherRepository),
+      GetCurrentWeatherByLocationUseCase(testWeatherRepository),
+      GetThreeHoursWeatherUseCase(testWeatherRepository),
+      testLocationService,
+    );
+
+    await tester.pumpWidget(createTestWidget());
+    await tester.pump(const Duration(milliseconds: 100));
+
+    // Verify that the settings and search icons are present
+    expect(find.byIcon(Icons.settings), findsOneWidget);
+    expect(find.byIcon(Icons.search), findsOneWidget);
+
+    // Verify that the main weather display containers are present
+    expect(find.byType(MainTemperatureDisplayContainer), findsOneWidget);
+    expect(find.byType(CityInfoCard), findsOneWidget);
+    expect(find.byType(TodaysForecastCarousel), findsOneWidget);
+    expect(find.byType(WeatherForecastList), findsOneWidget);
+  });
 }
