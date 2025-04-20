@@ -1,6 +1,8 @@
+import 'package:faba_weather_app/config/router/routes.dart';
 import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
@@ -36,8 +38,8 @@ class WeatherForecastList extends StatelessWidget {
             final iconUrl =
                 '${getIt<AppConfig>().iconBaseUrl}${weather.icon}@4x.png';
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+            return InkWell(
+              onTap: () => context.push(AppRoutes.weatherDetail),
               child: Row(
                 children: [
                   // Day and Date
