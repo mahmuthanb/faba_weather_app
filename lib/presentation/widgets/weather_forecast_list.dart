@@ -39,7 +39,8 @@ class WeatherForecastList extends StatelessWidget {
                 '${getIt<AppConfig>().iconBaseUrl}${weather.icon}@4x.png';
 
             return InkWell(
-              onTap: () => context.push(AppRoutes.weatherDetail),
+              onTap:
+                  () => context.push(AppRoutes.weatherDetail, extra: weather),
               child: Row(
                 children: [
                   // Day and Date

@@ -1,3 +1,4 @@
+import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/presentation/screens/weather_detail/weather_detail_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:faba_weather_app/config/router/routes.dart';
@@ -19,7 +20,9 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.weatherDetail,
       name: 'weatherDetail',
-      builder: (context, state) => const WeatherDetailPage(),
+      builder:
+          (context, state) =>
+              WeatherDetailPage(weather: state.extra as Weather),
     ),
   ],
 );
