@@ -102,6 +102,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fiveDayForecast => '5-Day Forecast';
 
   @override
+  String get noData => 'No Data';
+
+  @override
   String searchingFor(String query) {
     return 'Searching for: $query';
   }

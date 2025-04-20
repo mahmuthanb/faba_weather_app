@@ -30,6 +30,7 @@
   "weatherUpdated": "Weather updated successfully",
   "noRecentSearches": "No recent searches",
   "fiveDayForecast": "5-Day Forecast",
+  "noData":"No Data",
   "searchingFor": "Searching for: {query}",
   "@searchingFor": {
     "placeholders": {

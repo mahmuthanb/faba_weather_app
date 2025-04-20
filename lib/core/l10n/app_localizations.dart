@@ -281,6 +281,12 @@ abstract class AppLocalizations {
   /// **'5-Day Forecast'**
   String get fiveDayForecast;
 
+  /// No description provided for @noData.
+  ///
+  /// In en, this message translates to:
+  /// **'No Data'**
+  String get noData;
+
   /// No description provided for @searchingFor.
   ///
   /// In en, this message translates to:

@@ -102,6 +102,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fiveDayForecast => 'Pronóstico de 5 Días';
 
   @override
+  String get noData => 'Sin Datos';
+
+  @override
   String searchingFor(String query) {
     return 'Buscando: $query';
   }

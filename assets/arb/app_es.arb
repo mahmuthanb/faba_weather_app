@@ -30,6 +30,7 @@
   "weatherUpdated": "El tiempo se actualizó correctamente",
   "noRecentSearches": "No hay búsquedas recientes",
   "fiveDayForecast": "Pronóstico de 5 Días",
+  "noData": "Sin Datos",
   "searchingFor": "Buscando: {query}",
   "@searchingFor": {
     "placeholders": {
