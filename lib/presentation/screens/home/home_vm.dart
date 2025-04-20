@@ -1,5 +1,3 @@
-import 'package:faba_weather_app/config/app_config.dart';
-import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/core/services/location_service.dart';
 import 'package:faba_weather_app/data/services/storage_service.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';

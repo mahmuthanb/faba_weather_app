@@ -164,7 +164,7 @@ class _WeatherDetailPageState
           Text(
             label,
             style: AppTextStyles.body1.copyWith(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withAlpha(200),
             ),
           ),
           const Spacer(),

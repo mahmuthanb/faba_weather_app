@@ -117,7 +117,7 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.8),
+        color: Colors.black.withAlpha(200),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
@@ -128,7 +128,7 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.3),
+              color: Colors.white.withAlpha(30),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -140,7 +140,7 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: l10n.searchHint,
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+                hintStyle: TextStyle(color: Colors.white.withAlpha(150)),
                 prefixIcon: const Icon(Icons.search, color: Colors.white),
                 suffixIcon:
                     _searchController.text.isNotEmpty
@@ -157,7 +157,7 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: Colors.white.withOpacity(0.1),
+                fillColor: Colors.white.withAlpha(30),
               ),
               onChanged: (value) {
                 setState(() {});

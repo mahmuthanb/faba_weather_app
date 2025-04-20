@@ -58,7 +58,7 @@ class WeatherForecastCard extends StatelessWidget {
               Text(
                 '${weather.windSpeed.round()} km/h',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withAlpha(175),
                   fontSize: 14,
                 ),
               ),

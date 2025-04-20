@@ -8,7 +8,6 @@ import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
-import 'package:intl/intl.dart';
 
 class WeatherForecastList extends StatelessWidget {
   final List<Weather> forecasts;
@@ -72,7 +71,7 @@ class WeatherForecastList extends StatelessWidget {
                           Text(
                             weather.description,
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.7),
+                              color: Colors.white.withAlpha(175),
                               fontSize: 14,
                             ),
                           ),
