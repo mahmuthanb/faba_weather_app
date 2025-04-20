@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 abstract class AppConfig {
   String get baseUrl;
+  String get iconBaseUrl;
   String get apiKey;
 }
 
@@ -12,6 +13,9 @@ abstract class AppConfig {
 class AppConfigProdImpl implements AppConfig {
   @override
   String get baseUrl => "https://api.openweathermap.org/data/2.5";
+
+  @override
+  String get iconBaseUrl => "https://openweathermap.org/img/wn/";
 
   @override
   String get apiKey =>
@@ -25,6 +29,9 @@ class AppConfigProdImpl implements AppConfig {
 class AppConfigDevImpl implements AppConfig {
   @override
   String get baseUrl => "https://api.openweathermap.org/data/2.5";
+
+  @override
+  String get iconBaseUrl => "https://openweathermap.org/img/wn/";
 
   @override
   String get apiKey =>

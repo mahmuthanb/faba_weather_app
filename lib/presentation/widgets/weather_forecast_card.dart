@@ -1,20 +1,21 @@
 import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
-import 'package:intl/intl.dart';
+import 'package:faba_weather_app/core/extensions/date_format_extension.dart';
+import 'package:faba_weather_app/data/models/forecast_response_model.dart';
 import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class WeatherForecastCard extends StatelessWidget {
   final Weather weather;
+  final CityInfo? cityInfo;
 
-  const WeatherForecastCard({super.key, required this.weather});
+  const WeatherForecastCard({super.key, required this.weather, this.cityInfo});
 
   @override
   Widget build(BuildContext context) {
     final time = DateTime.fromMillisecondsSinceEpoch(weather.timestamp * 1000);
-    final timeStr = DateFormat('HH:mm').format(time);
     final iconUrl = '${getIt<AppConfig>().iconBaseUrl}${weather.icon}@4x.png';
 
     return Padding(
@@ -23,7 +24,7 @@ class WeatherForecastCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            timeStr,
+            time.time24Hour,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
@@ -57,7 +58,7 @@ class WeatherForecastCard extends StatelessWidget {
               Text(
                 '${weather.windSpeed.round()} km/h',
                 style: TextStyle(
-                  color: Colors.white.withAlpha(175),
+                  color: Colors.white.withOpacity(0.7),
                   fontSize: 14,
                 ),
               ),

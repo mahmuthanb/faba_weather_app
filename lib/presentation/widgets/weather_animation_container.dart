@@ -5,13 +5,11 @@ import 'package:faba_weather_app/core/enums/weather_condition.dart';
 
 class WeatherAnimationContainer extends StatelessWidget {
   final String weatherCondition;
-  final double temperature;
   final Widget child;
 
   const WeatherAnimationContainer({
     super.key,
     required this.weatherCondition,
-    required this.temperature,
     required this.child,
   });
 
