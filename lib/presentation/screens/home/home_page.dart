@@ -2,6 +2,7 @@ import 'package:faba_weather_app/config/router/routes.dart';
 import 'package:faba_weather_app/core/constants/app_dimensions.dart';
 import 'package:faba_weather_app/core/utils/time_utils.dart';
 import 'package:faba_weather_app/core/widgets/widgets.dart';
+import 'package:faba_weather_app/presentation/widgets/city_info_card.dart';
 import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
 import 'package:faba_weather_app/presentation/widgets/location_search_bottom_sheet.dart';
 import 'package:faba_weather_app/presentation/widgets/main_temperature_display_container.dart';
@@ -47,14 +48,10 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
                 onPressed:
                     () => LocationSearchBottomSheet.show(context, viewModel),
                 icon: const Icon(Icons.search, color: Colors.white, size: 24),
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
               ),
               IconButton(
                 onPressed: () => context.push(AppRoutes.settings),
                 icon: const Icon(Icons.settings, color: Colors.white, size: 24),
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
               ),
             ],
           ),
@@ -65,92 +62,15 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
               child: Column(
                 children: [
                   // Temperature Display
-                  if (viewModel.weather != null) ...[
-                    MainTemperatureDisplayContainer(
-                      weather: viewModel.weather!,
-                    ),
-                  ],
+                  MainTemperatureDisplayContainer(weather: viewModel.weather),
                   // City Information Card
-                  if (viewModel.cityInfo != null) ...[
-                    GlassyContainer(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _buildInfoItem(
-                                Icons.people,
-                                l10n.population,
-                                viewModel.cityInfo!.population.toString(),
-                              ),
-                              _buildInfoItem(
-                                Icons.access_time,
-                                l10n.timezone,
-                                'UTC${viewModel.cityInfo!.timezone >= 0 ? '+' : ''}${viewModel.cityInfo!.timezone ~/ 3600}',
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _buildInfoItem(
-                                Icons.wb_sunny,
-                                l10n.sunrise,
-                                TimeUtils.formatTime(
-                                  viewModel.cityInfo!.sunrise,
-                                ),
-                              ),
-                              _buildInfoItem(
-                                Icons.nights_stay,
-                                l10n.sunset,
-                                TimeUtils.formatTime(
-                                  viewModel.cityInfo!.sunset,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  CityInfoCard(cityInfo: viewModel.cityInfo),
                   // Today's 3-Hour Forecast
-                  if (viewModel.todayForecast != null) ...[
-                    TodaysForecastCarousel(forecasts: viewModel.todayForecast!),
-                  ],
+                  TodaysForecastCarousel(forecasts: viewModel.todayForecast),
                   // Five Day Forecast
-                  if (viewModel.fiveDayForecast != null) ...[
-                    WeatherForecastList(forecasts: viewModel.fiveDayForecast!),
-                  ],
+                  WeatherForecastList(forecasts: viewModel.fiveDayForecast),
                 ],
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInfoItem(IconData icon, String label, String value) {
-    return SizedBox(
-      width: 100,
-      child: Column(
-        children: [
-          Icon(icon, color: Colors.white, size: 24),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(color: Colors.white.withAlpha(175), fontSize: 12),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            value,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
             ),
           ),
         ],
