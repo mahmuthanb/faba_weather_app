@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:faba_weather_app/config/app_config.dart';
-import 'package:faba_weather_app/core/constants/app_colors.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/presentation/widgets/shimmer_placeholder.dart';

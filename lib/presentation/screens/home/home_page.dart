@@ -1,9 +1,7 @@
 import 'package:faba_weather_app/config/router/routes.dart';
 import 'package:faba_weather_app/core/constants/app_dimensions.dart';
-import 'package:faba_weather_app/core/utils/time_utils.dart';
 import 'package:faba_weather_app/core/widgets/widgets.dart';
 import 'package:faba_weather_app/presentation/widgets/city_info_card.dart';
-import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
 import 'package:faba_weather_app/presentation/widgets/location_search_bottom_sheet.dart';
 import 'package:faba_weather_app/presentation/widgets/main_temperature_display_container.dart';
 import 'package:faba_weather_app/presentation/widgets/todays_forecasts_carousel.dart';
