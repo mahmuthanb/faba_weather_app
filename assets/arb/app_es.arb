@@ -1,9 +1,41 @@
 {
-  "@@locale": "es",
   "appTitle": "Aplicación del Tiempo",
-  "settingsTitle":"Ajustes",
-  "settingsHeader":"FABA International\nEstudio de caso",
+  "settingsTitle": "Ajustes",
+  "settingsHeader": "FABA International\nEstudio de caso",
   "temperature": "Temperatura",
   "cityLabel": "Ciudad",
-  "searchHint": "Buscar ciudad"
-}
+  "searchHint": "Buscar una ciudad...",
+  "noResultsFound": "No se encontraron resultados",
+  "searching": "Buscando...",
+  "weatherDetails": "Detalles del Tiempo",
+  "humidity": "Humedad",
+  "windSpeed": "Velocidad del Viento",
+  "condition": "Condición",
+  "todaysForecast": "Pronóstico de Hoy",
+  "darkMode": "Modo Oscuro",
+  "language": "Idioma",
+  "temperatureUnit": "Unidad de Temperatura",
+  "celsius": "Celsius",
+  "fahrenheit": "Fahrenheit",
+  "english": "Inglés",
+  "spanish": "Español",
+  "licenses": "Licencias",
+  "loading": "Cargando...",
+  "population": "Población",
+  "timezone": "Zona Horaria",
+  "sunrise": "Amanecer",
+  "sunset": "Atardecer",
+  "enterCityName": "Ingrese el nombre de una ciudad",
+  "error": "Error: ",
+  "weatherUpdated": "El tiempo se actualizó correctamente",
+  "noRecentSearches": "No hay búsquedas recientes",
+  "fiveDayForecast": "Pronóstico de 5 Días",
+  "searchingFor": "Buscando: {query}",
+  "@searchingFor": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  }
+} 

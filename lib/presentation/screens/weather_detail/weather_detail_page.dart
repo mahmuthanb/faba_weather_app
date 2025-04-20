@@ -3,6 +3,7 @@ import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/constants/app_text_styles.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/core/extensions/date_format_extension.dart';
+import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_animation_container.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class _WeatherDetailPageState
     final dateTime = DateTime.fromMillisecondsSinceEpoch(
       widget.weather.timestamp * 1000,
     );
+    final l10n = AppLocalizations.of(context);
 
     return WeatherAnimationContainer(
       weatherCondition: widget.weather.weatherCondition,
@@ -109,7 +111,7 @@ class _WeatherDetailPageState
                   children: [
                     // Weather details
                     Text(
-                      'Weather Details',
+                      l10n.weatherDetails,
                       style: AppTextStyles.heading2.copyWith(
                         color: Colors.white,
                       ),
@@ -117,25 +119,25 @@ class _WeatherDetailPageState
                     const SizedBox(height: 16),
                     _buildWeatherMetric(
                       icon: Icons.thermostat,
-                      label: 'Temperature',
+                      label: l10n.temperature,
                       value: '${widget.weather.temperature.round()}°',
                     ),
                     const Divider(color: Colors.white24),
                     _buildWeatherMetric(
                       icon: Icons.water_drop,
-                      label: 'Humidity',
+                      label: l10n.humidity,
                       value: '${widget.weather.humidity}%',
                     ),
                     const Divider(color: Colors.white24),
                     _buildWeatherMetric(
                       icon: Icons.air,
-                      label: 'Wind Speed',
+                      label: l10n.windSpeed,
                       value: '${widget.weather.windSpeed.round()} km/h',
                     ),
                     const Divider(color: Colors.white24),
                     _buildWeatherMetric(
                       icon: Icons.cloud,
-                      label: 'Condition',
+                      label: l10n.condition,
                       value: widget.weather.weatherCondition,
                     ),
                   ],

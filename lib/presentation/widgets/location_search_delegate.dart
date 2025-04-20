@@ -31,11 +31,13 @@ class LocationSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     if (query.isEmpty) {
-      return const Center(
+      return Center(
         child: Text(
-          'Please enter a city name',
-          style: TextStyle(color: Colors.white),
+          l10n.enterCityName,
+          style: const TextStyle(color: Colors.white),
         ),
       );
     }
@@ -50,16 +52,16 @@ class LocationSearchDelegate extends SearchDelegate {
         if (snapshot.hasError) {
           return Center(
             child: Text(
-              'Error: ${snapshot.error}',
+              '${l10n.error}${snapshot.error}',
               style: const TextStyle(color: Colors.white),
             ),
           );
         }
 
-        return const Center(
+        return Center(
           child: Text(
-            'Weather updated!',
-            style: TextStyle(color: Colors.white),
+            l10n.weatherUpdated,
+            style: const TextStyle(color: Colors.white),
           ),
         );
       },
@@ -68,20 +70,20 @@ class LocationSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     if (query.isEmpty) {
-      return const Center(
+      return Center(
         child: Text(
-          'Start typing to search for a city',
-          style: TextStyle(color: Colors.white),
+          l10n.enterCityName,
+          style: const TextStyle(color: Colors.white),
         ),
       );
     }
 
-    // Here you could implement city suggestions based on the query
-    // For now, we'll just show a message
     return Center(
       child: Text(
-        'Searching for: $query',
+        l10n.searchingFor(query),
         style: const TextStyle(color: Colors.white),
       ),
     );

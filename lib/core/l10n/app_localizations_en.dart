@@ -24,5 +24,85 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cityLabel => 'City';
 
   @override
-  String get searchHint => 'Search City';
+  String get searchHint => 'Search for a city...';
+
+  @override
+  String get noResultsFound => 'No results found';
+
+  @override
+  String get searching => 'Searching...';
+
+  @override
+  String get weatherDetails => 'Weather Details';
+
+  @override
+  String get humidity => 'Humidity';
+
+  @override
+  String get windSpeed => 'Wind Speed';
+
+  @override
+  String get condition => 'Condition';
+
+  @override
+  String get todaysForecast => 'Today\'s Forecast';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get temperatureUnit => 'Temperature Unit';
+
+  @override
+  String get celsius => 'Celsius';
+
+  @override
+  String get fahrenheit => 'Fahrenheit';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get spanish => 'Spanish';
+
+  @override
+  String get licenses => 'Licenses';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get population => 'Population';
+
+  @override
+  String get timezone => 'Timezone';
+
+  @override
+  String get sunrise => 'Sunrise';
+
+  @override
+  String get sunset => 'Sunset';
+
+  @override
+  String get enterCityName => 'Enter a city name';
+
+  @override
+  String get error => 'Error: ';
+
+  @override
+  String get weatherUpdated => 'Weather updated successfully';
+
+  @override
+  String get noRecentSearches => 'No recent searches';
+
+  @override
+  String get fiveDayForecast => '5-Day Forecast';
+
+  @override
+  String searchingFor(String query) {
+    return 'Searching for: $query';
+  }
 }

@@ -38,7 +38,7 @@ class SettingsPage extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.dark_mode),
-                    title: Text('Dark Mode'),
+                    title: Text(l10n.darkMode),
                     trailing: Switch(
                       value: themeProvider.isDarkMode,
                       onChanged: (_) => themeProvider.toggleTheme(),
@@ -47,12 +47,18 @@ class SettingsPage extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.language),
-                    title: Text('Language'),
+                    title: Text(l10n.language),
                     trailing: DropdownButton<String>(
                       value: languageProvider.languageCode,
-                      items: const [
-                        DropdownMenuItem(value: 'en', child: Text('English')),
-                        DropdownMenuItem(value: 'es', child: Text('Español')),
+                      items: [
+                        DropdownMenuItem(
+                          value: 'en',
+                          child: Text(l10n.english),
+                        ),
+                        DropdownMenuItem(
+                          value: 'es',
+                          child: Text(l10n.spanish),
+                        ),
                       ],
                       onChanged: (String? value) {
                         if (value != null) {
@@ -64,17 +70,17 @@ class SettingsPage extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.thermostat),
-                    title: Text('Temperature Unit'),
+                    title: Text(l10n.temperatureUnit),
                     trailing: DropdownButton<String>(
                       value: temperatureProvider.temperatureUnit.name,
-                      items: const [
+                      items: [
                         DropdownMenuItem(
                           value: 'metric',
-                          child: Text('Celsius (°C)'),
+                          child: Text(l10n.celsius),
                         ),
                         DropdownMenuItem(
                           value: 'imperial',
-                          child: Text('Fahrenheit (°F)'),
+                          child: Text(l10n.fahrenheit),
                         ),
                       ],
                       onChanged: (String? value) {
@@ -89,14 +95,14 @@ class SettingsPage extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             // Additional Settings
             Card(
               child: Column(
                 children: [
                   ListTile(
                     leading: const Icon(Icons.library_books),
-                    title: Text('Licenses'),
+                    title: Text(l10n.licenses),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () => showLicensePage(context: context),
                   ),

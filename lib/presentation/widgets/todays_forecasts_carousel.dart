@@ -3,6 +3,7 @@ import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/presentation/widgets/glassy_container.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_forecast_card.dart';
 import 'package:flutter/material.dart';
+import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 
 class TodaysForecastCarousel extends StatelessWidget {
   const TodaysForecastCarousel({super.key, required this.forecasts});
@@ -11,13 +12,15 @@ class TodaysForecastCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return GlassyContainer(
       padding: CustomSpacer.space16.vertical,
       child: Column(
         children: [
           Text(
-            "Today's Forecast",
-            style: TextStyle(
+            l10n.todaysForecast,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.w600,

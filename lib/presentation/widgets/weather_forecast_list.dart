@@ -7,6 +7,8 @@ import 'package:faba_weather_app/core/extensions/date_format_extension.dart';
 import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:faba_weather_app/core/l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 class WeatherForecastList extends StatelessWidget {
   final List<Weather> forecasts;
@@ -15,14 +17,16 @@ class WeatherForecastList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return GlassyContainer(
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.only(bottom: 16),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
             child: Text(
-              '5-Day Forecast',
-              style: TextStyle(
+              l10n.fiveDayForecast,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -43,9 +47,17 @@ class WeatherForecastList extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   children: [
-                    // Day and Date
-                    SizedBox(
-                      width: 100,
+                    CachedNetworkImage(
+                      imageUrl: iconUrl,
+                      width: 50,
+                      height: 50,
+                      placeholder:
+                          (context, url) => const CircularProgressIndicator(),
+                      errorWidget:
+                          (context, url, error) => const Icon(Icons.error),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -58,7 +70,7 @@ class WeatherForecastList extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            time.dayMonth,
+                            weather.description,
                             style: TextStyle(
                               color: Colors.white.withOpacity(0.7),
                               fontSize: 14,
@@ -67,37 +79,12 @@ class WeatherForecastList extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 16),
-                    // Weather Condition
-                    Expanded(
-                      child: Text(
-                        weather.description,
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.9),
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    // Weather Icon
-                    CachedNetworkImage(
-                      imageUrl: iconUrl,
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.contain,
-                      placeholder:
-                          (context, url) => const CircularProgressIndicator(),
-                      errorWidget:
-                          (context, url, error) => const Icon(Icons.error),
-                    ),
-                    const SizedBox(width: 16),
-                    // Temperature
                     Text(
                       '${weather.temperature.round()}°',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],

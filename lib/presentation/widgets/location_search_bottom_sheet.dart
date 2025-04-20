@@ -73,11 +73,13 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
   }
 
   Widget _buildRecentSearches() {
+    final l10n = AppLocalizations.of(context);
+
     if (_recentSearches.isEmpty) {
-      return const Center(
+      return Center(
         child: Text(
-          'No recent searches',
-          style: TextStyle(color: Colors.white70),
+          l10n.noRecentSearches,
+          style: const TextStyle(color: Colors.white70),
         ),
       );
     }
@@ -110,6 +112,8 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,
       decoration: BoxDecoration(
@@ -135,7 +139,7 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
               controller: _searchController,
               style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                hintText: AppLocalizations.of(context).searchHint,
+                hintText: l10n.searchHint,
                 hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
                 prefixIcon: const Icon(Icons.search, color: Colors.white),
                 suffixIcon:
@@ -170,17 +174,10 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
                     ? Center(
                       child: Text(
                         _error!,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.red),
                       ),
                     )
-                    : _searchController.text.isEmpty
-                    ? _buildRecentSearches()
-                    : Center(
-                      child: Text(
-                        'Searching for: ${_searchController.text}',
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    : _buildRecentSearches(),
           ),
         ],
       ),

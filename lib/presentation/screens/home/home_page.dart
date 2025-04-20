@@ -11,6 +11,7 @@ import 'package:faba_weather_app/presentation/screens/home/home_vm.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_animation_container.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_forecast_list.dart';
 import 'package:go_router/go_router.dart';
+import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 
 class HomePage extends BasePage {
   const HomePage({super.key});
@@ -22,6 +23,8 @@ class HomePage extends BasePage {
 class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
   @override
   Widget buildBody(BuildContext context, HomeViewModel viewModel) {
+    final l10n = AppLocalizations.of(context);
+
     return WeatherAnimationContainer(
       weatherCondition: viewModel.weather?.weatherCondition ?? 'clear',
       child: Column(
@@ -32,7 +35,7 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
               const Icon(Icons.location_on, color: Colors.white, size: 30),
               const SizedBox(width: 4),
               Text(
-                viewModel.weather?.cityAndCountry ?? "Loading",
+                viewModel.weather?.cityAndCountry ?? l10n.loading,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -79,13 +82,13 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
                             children: [
                               _buildInfoItem(
                                 Icons.people,
-                                'Population',
-                                '${(viewModel.cityInfo!.population / 1000).toStringAsFixed(1)}K',
+                                l10n.population,
+                                viewModel.cityInfo!.population.toString(),
                               ),
                               _buildInfoItem(
                                 Icons.access_time,
-                                'Timezone',
-                                'UTC${viewModel.cityInfo!.timezone >= 0 ? '+' : ''}${(viewModel.cityInfo!.timezone / 3600).toStringAsFixed(1)}',
+                                l10n.timezone,
+                                'UTC${viewModel.cityInfo!.timezone >= 0 ? '+' : ''}${viewModel.cityInfo!.timezone ~/ 3600}',
                               ),
                             ],
                           ),
@@ -95,14 +98,14 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
                             children: [
                               _buildInfoItem(
                                 Icons.wb_sunny,
-                                'Sunrise',
+                                l10n.sunrise,
                                 TimeUtils.formatTime(
                                   viewModel.cityInfo!.sunrise,
                                 ),
                               ),
                               _buildInfoItem(
                                 Icons.nights_stay,
-                                'Sunset',
+                                l10n.sunset,
                                 TimeUtils.formatTime(
                                   viewModel.cityInfo!.sunset,
                                 ),
