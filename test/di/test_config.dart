@@ -8,7 +8,6 @@ import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:geolocator/geolocator.dart';
 import '../mocks/mock_models.dart';
 
-@module
 abstract class TestModule {
   @test
   @LazySingleton(as: ApiService)
