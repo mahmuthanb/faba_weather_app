@@ -43,6 +43,13 @@ class HomeViewModel extends BaseViewModel {
     initializeLocation();
   }
 
+  Future<void> refreshWeatherData() async {
+    if (_location != null) {
+      await getCurrentWeatherByLocation();
+      await getThreeHoursWeatherByLocation();
+    }
+  }
+
   Future<void> getCurrentWeather(String cityName) async {
     _weather = await _getCurrentWeatherUseCase.call(
       cityName: cityName,

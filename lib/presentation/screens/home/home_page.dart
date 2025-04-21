@@ -11,6 +11,8 @@ import 'package:faba_weather_app/presentation/widgets/weather_animation_containe
 import 'package:faba_weather_app/presentation/widgets/weather_forecast_list.dart';
 import 'package:go_router/go_router.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:faba_weather_app/presentation/providers/temperature_provider.dart';
 
 class HomePage extends BasePage {
   const HomePage({super.key});
@@ -23,6 +25,14 @@ class _HomePageState extends BasePageState<HomePage, HomeViewModel> {
   @override
   Widget buildBody(BuildContext context, HomeViewModel viewModel) {
     final l10n = AppLocalizations.of(context);
+    final temperatureProvider = context.watch<TemperatureProvider>();
+
+    if (temperatureProvider.hasChanged) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        viewModel.refreshWeatherData();
+        temperatureProvider.clearChange();
+      });
+    }
 
     return WeatherAnimationContainer(
       weatherCondition: viewModel.weather?.weatherCondition ?? 'clear',

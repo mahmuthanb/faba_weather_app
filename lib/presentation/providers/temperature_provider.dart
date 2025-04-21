@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:faba_weather_app/data/services/storage_service.dart';
 
-enum UnitType { metric, imperial }
+class TemperatureProvider extends ChangeNotifier {
+  String _unit = StorageService.getTemperatureUnit();
+  String get unit => _unit;
+  bool _hasChanged = false;
+  bool get hasChanged => _hasChanged;
 
-class TemperatureProvider with ChangeNotifier {
-  late UnitType _temperatureUnit;
-
-  TemperatureProvider() {
-    _temperatureUnit = UnitType.values.byName(
-      StorageService.getTemperatureUnit(),
-    );
+  void setUnit(String unit) {
+    if (_unit != unit) {
+      _unit = unit;
+      _hasChanged = true;
+      StorageService.setTemperatureUnit(unit);
+      notifyListeners();
+    }
   }
 
-  UnitType get temperatureUnit => _temperatureUnit;
-
-  void setTemperatureUnit(UnitType unit) {
-    _temperatureUnit = unit;
-    StorageService.setTemperatureUnit(unit.name);
-    notifyListeners();
+  void clearChange() {
+    _hasChanged = false;
   }
 }

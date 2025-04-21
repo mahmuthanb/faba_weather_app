@@ -57,6 +57,7 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet> {
 
     try {
       await widget.viewModel.getCurrentWeather(query);
+      await widget.viewModel.getThreeHoursWeatherByLocation();
       await StorageService.addRecentSearch(query);
       if (mounted) {
         Navigator.pop(context);

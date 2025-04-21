@@ -72,7 +72,7 @@ class SettingsPage extends StatelessWidget {
                     leading: const Icon(Icons.thermostat),
                     title: Text(l10n.temperatureUnit),
                     trailing: DropdownButton<String>(
-                      value: temperatureProvider.temperatureUnit.name,
+                      value: temperatureProvider.unit,
                       items: [
                         DropdownMenuItem(
                           value: 'metric',
@@ -85,9 +85,7 @@ class SettingsPage extends StatelessWidget {
                       ],
                       onChanged: (String? value) {
                         if (value != null) {
-                          temperatureProvider.setTemperatureUnit(
-                            UnitType.values.byName(value),
-                          );
+                          temperatureProvider.setUnit(value);
                         }
                       },
                     ),
