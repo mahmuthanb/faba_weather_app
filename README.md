@@ -11,6 +11,25 @@ A beautiful and informative weather application built with Flutter, providing re
 - Dark/Light theme support
 - Multi-language support
 
+## 📱 Screenshots
+
+### Screenshots
+
+| Screen          | Description                                                 |
+| --------------- | ----------------------------------------------------------- |
+| Home            | Main weather screen showing current conditions and forecast |
+| Home (ES)       | Spanish localized version of the home screen                |
+| Settings        | App configuration screen for units, language, and theme     |
+| Settings (Dark) | Dark theme version of settings screen                       |
+| Detail          | Detailed weather information and extended forecast          |
+| Detail (ES)     | Spanish localized version of detail screen                  |
+
+| Screenshots         |                                                                     |                                                                          |
+| ------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Home EN/ES          | <img src="assets/screenshots/screenshot_home.png" width="300"/>     | <img src="assets/screenshots/screenshot_home_es.png" width="300"/>       |
+| Settings Light/Dark | <img src="assets/screenshots/screenshot_settings.png" width="300"/> | <img src="assets/screenshots/screenshot_settings_dark.png" width="300"/> |
+| Detail EN/ES        | <img src="assets/screenshots/screenshot_detail.png" width="300"/>   | <img src="assets/screenshots/screenshot_detail_es.png" width="300"/>     |
+
 ## 🏗️ Architecture
 
 The project follows Clean Architecture principles with a clear separation of concerns:
@@ -129,20 +148,7 @@ Key dependencies are listed in `pubspec.yaml`. The app uses:
 - `flutter_bloc` for state management
 - `dio` for network requests
 - `get_it` for dependency injection
-- `flutter_dotenv` for environment variables
 - And more...
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👥 Authors
 
