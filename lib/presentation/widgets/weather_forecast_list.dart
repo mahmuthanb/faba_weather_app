@@ -9,6 +9,7 @@ import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
+import 'package:faba_weather_app/core/extensions/temperature_extension.dart';
 
 class WeatherForecastList extends StatelessWidget {
   final List<Weather>? forecasts;
@@ -92,7 +93,7 @@ class WeatherForecastList extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '${weather.temperature.round()}°',
+                                '${weather.temperature.round()}${weather.temperature.temperatureUnitSymbol}',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,

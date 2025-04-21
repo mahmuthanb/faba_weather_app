@@ -4,6 +4,7 @@ import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/presentation/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:faba_weather_app/core/extensions/temperature_extension.dart';
 
 class MainTemperatureDisplayContainer extends StatelessWidget {
   const MainTemperatureDisplayContainer({super.key, required this.weather});
@@ -35,15 +36,15 @@ class MainTemperatureDisplayContainer extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Text(
-                    '°c',
-                    style: TextStyle(
+                  Text(
+                    weather!.temperature.temperatureUnitSymbol,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 48,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
 
                   CachedNetworkImage(
                     imageUrl: iconUrl!,

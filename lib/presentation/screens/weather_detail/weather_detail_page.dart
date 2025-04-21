@@ -3,6 +3,7 @@ import 'package:faba_weather_app/config/app_config.dart';
 import 'package:faba_weather_app/core/constants/app_text_styles.dart';
 import 'package:faba_weather_app/core/di/locator.dart';
 import 'package:faba_weather_app/core/extensions/date_format_extension.dart';
+import 'package:faba_weather_app/core/extensions/temperature_extension.dart';
 import 'package:faba_weather_app/core/l10n/app_localizations.dart';
 import 'package:faba_weather_app/domain/entities/weather.dart';
 import 'package:faba_weather_app/presentation/widgets/weather_animation_container.dart';
@@ -72,10 +73,10 @@ class _WeatherDetailPageState
                         ),
                         const SizedBox(width: 16),
                         Text(
-                          '${widget.weather.temperature.round()}°',
+                          '${widget.weather.temperature.round()}${widget.weather.temperature.temperatureUnitSymbol}',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 72,
+                            fontSize: 48,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -120,7 +121,8 @@ class _WeatherDetailPageState
                     _buildWeatherMetric(
                       icon: Icons.thermostat,
                       label: l10n.temperature,
-                      value: '${widget.weather.temperature.round()}°',
+                      value:
+                          '${widget.weather.temperature.round()}${widget.weather.temperature.temperatureUnitSymbol}',
                     ),
                     const Divider(color: Colors.white24),
                     _buildWeatherMetric(
